@@ -42,16 +42,20 @@ Before running any AWS commands:
 When creating or modifying files (especially configuration files):
 - Always use `diff` to compare changes before applying them
 - Review the differences to ensure only intended changes are present
-- Check for unexpected additions at the end of files (e.g., shell artifacts like `EOF < /dev/null`)
+- Check for unexpected additions at the end of files (e.g., shell artifacts like `EOF`)
 - Validate file formats after modification (e.g., use `jq` for JSON validation)
+- **IMPORTANT**: When creating files, use the Write tool instead of bash heredocs to avoid EOF markers being included in the file
 - Example workflow:
   ```bash
-  # Create your updated file
-  cat > updated-config.json << 'EOF'
-  { "your": "config" }
-  EOF
+  # AVOID: Using heredocs with cat can add EOF to the file
+  # cat > config.json << 'EOF'
+  # { "data": "value" }
+  # EOF
   
-  # Compare with original
+  # PREFER: Use the Write tool for clean file creation
+  # Or if using bash, use echo or printf
+  
+  # Always verify and compare
   diff -u original-config.json updated-config.json
   
   # Validate JSON format
