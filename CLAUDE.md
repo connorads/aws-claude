@@ -24,6 +24,7 @@ Before running any AWS commands:
 - **Lambda functions**: Deploy, invoke, view logs
 - **CloudFormation**: Deploy stacks, check status, view events
 - **IAM**: List users, roles, policies (read-only operations preferred)
+- **AppConfig**: Manage feature flags and dynamic configuration
 
 ### Security Best Practices
 - Never hardcode credentials or sensitive information
@@ -116,6 +117,13 @@ aws lambda invoke --function-name my-function output.txt --profile <profile-name
 # CloudFormation
 aws cloudformation list-stacks --profile <profile-name>
 aws cloudformation describe-stacks --stack-name my-stack --profile <profile-name>
+
+# AppConfig
+aws appconfig list-applications --profile <profile-name> --region <region>
+aws appconfig list-environments --application-id <app-id> --profile <profile-name> --region <region>
+aws appconfig list-configuration-profiles --application-id <app-id> --profile <profile-name> --region <region>
+aws appconfig list-deployments --application-id <app-id> --environment-id <env-id> --profile <profile-name> --region <region>
+aws appconfig get-hosted-configuration-version --application-id <app-id> --configuration-profile-id <profile-id> --version-number <version> --profile <profile-name> --region <region> output.json
 ```
 
 ## Environment Variables

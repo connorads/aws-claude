@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(granted ls)",
-      "Bash(assume:*)"
+      "Bash(assume:*)",
+      "Bash(aws appconfig list-applications:*)",
+      "Bash(aws appconfig list-environments:*)",
+      "Bash(aws appconfig list-configuration-profiles:*)",
+      "Bash(aws appconfig list-deployments:*)",
+      "Bash(aws appconfig get-configuration:*)",
+      "Bash(cat:*)",
+      "Bash(aws appconfig get-hosted-configuration-version:*)"
     ],
     "deny": []
   }
