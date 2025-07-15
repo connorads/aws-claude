@@ -38,6 +38,28 @@ Before running any AWS commands:
 - Check for region-specific resources if commands return empty results
 - Provide clear explanations for AWS CLI error messages
 
+### File Verification Best Practices
+When creating or modifying files (especially configuration files):
+- Always use `diff` to compare changes before applying them
+- Review the differences to ensure only intended changes are present
+- Check for unexpected additions at the end of files (e.g., shell artifacts like `EOF < /dev/null`)
+- Validate file formats after modification (e.g., use `jq` for JSON validation)
+- Example workflow:
+  ```bash
+  # Create your updated file
+  cat > updated-config.json << 'EOF'
+  { "your": "config" }
+  EOF
+  
+  # Compare with original
+  diff -u original-config.json updated-config.json
+  
+  # Validate JSON format
+  jq . updated-config.json > /dev/null && echo "Valid JSON"
+  
+  # Only proceed if changes look correct
+  ```
+
 ## Example Workflows
 
 ### Initial Setup Check

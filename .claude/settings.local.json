@@ -10,7 +10,10 @@
       "Bash(aws appconfig get-configuration:*)",
       "Bash(cat:*)",
       "Bash(aws appconfig get-hosted-configuration-version:*)",
-      "Bash(aws sts get-caller-identity:*)"
+      "Bash(aws sts get-caller-identity:*)",
+      "Bash(diff:*)",
+      "Bash(jq:*)",
+      "Bash(echo:*)"
     ],
     "deny": []
   }
